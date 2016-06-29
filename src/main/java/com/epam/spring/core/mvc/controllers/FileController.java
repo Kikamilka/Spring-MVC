@@ -20,7 +20,6 @@ public class FileController {
     @SuppressWarnings("finally")
     @RequestMapping(value = "/uploadJson", method = RequestMethod.POST)
     public ModelAndView fileUpload(MultipartHttpServletRequest req) throws IOException {
-        ModelAndView model = new ModelAndView();
         Map<String, MultipartFile> files = req.getFileMap();
          if (!files.isEmpty()) {
             fileService.parseFiles(files);

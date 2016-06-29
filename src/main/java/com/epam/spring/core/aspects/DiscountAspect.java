@@ -8,7 +8,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
 @Aspect
-//@Component("discountAspect")
+@Component("discountAspect")
 public class DiscountAspect {
 
     private final Map<User, Integer> discountCounterForUser = new HashMap<>();

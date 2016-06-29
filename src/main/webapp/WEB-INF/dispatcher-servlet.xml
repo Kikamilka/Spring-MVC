@@ -19,7 +19,7 @@
         <property name="maxUploadSize" value="100000"/>
     </bean>
 
-    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+<!--    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
         <property name="order" value="1"/>
         <property name="defaultViews">
             <list>
@@ -27,7 +27,7 @@
             </list>
         </property>
     </bean>
-
+-->
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix">

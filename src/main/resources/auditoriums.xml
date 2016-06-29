@@ -8,7 +8,7 @@
                             http://www.springframework.org/schema/context
                             http://www.springframework.org/schema/context/spring-context-4.3.xsd">
     
-    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+   <!--    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
                 <value>auditorium.properties</value>
@@ -16,7 +16,7 @@
         </property>
     </bean>
     
-   <!-- <bean id="auditorium1" class="com.epam.spring.core.domain.Auditorium">
+ <bean id="auditorium1" class="com.epam.spring.core.domain.Auditorium">
         <constructor-arg index="0" value="1"/>
         <constructor-arg index="1" value="${auditoriumName}"/>
         <constructor-arg index="2" value="${seatsNumber}"/>

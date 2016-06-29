@@ -3,6 +3,7 @@ package com.epam.spring.core.dao.impls;
 import com.epam.spring.core.dao.interfaces.UserDao;
 import com.epam.spring.core.domain.Ticket;
 import com.epam.spring.core.domain.User;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -72,8 +73,12 @@ public class UserDaoImplement implements UserDao {
     }
 
     @Override
-    public List<User> getAll() {        
-        return (List<User>) users.values();    
+    public List<User> getAll() {    
+        List<User> listUsers = new ArrayList<>();
+        users.values().stream().forEach((curUser) -> {
+            listUsers.add(curUser);
+        });
+        return listUsers;    
     }
 
 }

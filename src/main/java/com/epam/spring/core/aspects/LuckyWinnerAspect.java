@@ -6,7 +6,7 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 @Aspect
-//@Component("luckyWinnerAspect")
+@Component("luckyWinnerAspect")
 public class LuckyWinnerAspect {
 
     private int luckyTicketsCount;

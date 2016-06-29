@@ -7,16 +7,6 @@
     
     <import resource="users.xml"/>
     <import resource="database.xml"/>
-
-<!--    <bean id="userDao" class="com.epam.spring.core.dao.impls.UserDaoImplement">
-        <<property name="users">
-            <map>
-                <ref bean="user1"/>
-                <ref bean="user2"/>
-            </map>
-        </property>
-    </bean>
-    -->
     <bean id="dbUser" class="com.epam.spring.core.dao.impls.DbUserDaoImplement">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>

@@ -19,7 +19,7 @@ public class EventController {
     @Qualifier("eventService")
     EventService eventService;
     
-    @RequestMapping(value = "/allEvents", method = RequestMethod.GET)
+    @RequestMapping(value = "/allEvents/", method = RequestMethod.GET)
     public ModelAndView getAllEvents() {
         ModelAndView model = new ModelAndView();
         List<Event> events = eventService.getAll();
@@ -28,7 +28,7 @@ public class EventController {
         return model;
     }
     
-    @RequestMapping(value = "/info/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "/allEvents/info/{name}", method = RequestMethod.GET)
     public ModelAndView getEventByName(@PathVariable String name) {
         ModelAndView model = new ModelAndView();
         Event event = eventService.getByName(name);

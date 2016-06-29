@@ -16,18 +16,18 @@
                         <th>Название</th>
                         <th>Дата и время начала</th>
                         <th>Статус</th>
-                        <th>Базовая цена билета</th>
-                        <th>Базовая цена билета для vip-мест</th>
+                        <th>Цена билета</th>
+                        <th>Место проведения</th>
                     </tr>
                 </thead>
-                <c:forEach var="event" items="${events}">
+                <c:forEach items="${events}" var="event" >
                     <tr>
-                        <td><a href="/event/info/${event.name}" role="button">${event.name}</a></td>
+                        <td><a href="/info/${event.name}" role="button">${event.name}</a></td>
                         <td>${event.airDate} ${event.airTime}</td>
                         <td>${event.rating}</td>
                         <td>${event.price}</td>
                         <td>${event.auditorium}</td>
-                        <td><a class="btn btn-default" role="button" href="/event/eventDelete/${event.name}">Удалить</a></td>
+                        <td><a class="btn btn-default" role="button" href="./event/eventDelete/${event.name}">Удалить</a></td>
                     </tr>
                 </c:forEach>
             </table>

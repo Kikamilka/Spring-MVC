@@ -15,23 +15,28 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Имя</th>                            
+                            <th>Имя</th>
                             <th>Дата рождения</th>
-                            <th>Почта</th>
+                            <th>Почта</th>                            
                             <th>Действия</th>
                         </tr>
                     </thead>
-                    <c:forEach var="users" items="${users}">
-                        <tr>
-                            <td><a href="/users/info/${user.id}" role="button">${user.id}</a></td>
-                            <td>${user.name}</td>
-                            <td>${user.birthday}</td>
-                            <td>${user.email}</td>                            
-                            <td><a class="btn btn-default" role="button" href="/user/delete/${user.id}">Удалить</a></td>
-                        </tr>
-                    </c:forEach>
+                    <tr>
+                        <td><a href="/info/${users[0].id}" role="button">${users[0].id}</a></td>
+                        <td>${users[0].name}</td>
+                        <td>${users[0].birthday}</td>
+                        <td>${users[0].email}</td>                            
+                        <td><a class="btn btn-default" role="button" href="../delete/${users[0].id}">Удалить</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="/info/${users[1].id}" role="button">${users[1].id}</a></td>
+                        <td>${users[1].name}</td>
+                        <td>${users[1].birthday}</td>
+                        <td>${users[1].email}</td>                            
+                        <td><a class="btn btn-default" role="button" href="../delete/${users[1].id}">Удалить</a></td>
+                    </tr>
                 </table>
-                <a class="btn btn-default" href="/user/save" role="button">Добавить пользователя</a>
+                <a class="btn btn-default" href="../addUser" role="button">Добавить пользователя</a>
             </div>
         </div>
     </body>

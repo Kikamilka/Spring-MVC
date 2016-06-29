@@ -20,13 +20,13 @@
                     <td>${user.name}</td>
                 </tr>
                 <tr>
-                    <td>Электронная почта: </td>
-                    <td>${user.email}</td>
-                </tr>
-                <tr>
                     <td>Дата рождения: </td>
                     <td>${user.birthday}</td>
                 </tr>
+                <tr>
+                    <td>Электронная почта: </td>
+                    <td>${user.email}</td>
+                </tr>                
             </table>
         </div>
     </body>
