@@ -5,13 +5,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Список всех пользователях</title>
     </head>
-    <body style="padding: 20px">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="panel-title">Все зарегистрированные пользователи:</h3>
+    <body>
+        <div>
+            <div>
+                <h3>Все зарегистрированные пользователи:</h3>
             </div>
-            <div class="panel-body">
-                <table class="table">
+            <div>
+                <table>
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -23,7 +23,7 @@
                     </thead>
                     <c:forEach var="users" items="${users}">
                         <tr>
-                            <td><a href="/users/about/${user.id}" role="button">${user.id}</a></td>
+                            <td><a href="/users/info/${user.id}" role="button">${user.id}</a></td>
                             <td>${user.name}</td>
                             <td>${user.birthday}</td>
                             <td>${user.email}</td>                            

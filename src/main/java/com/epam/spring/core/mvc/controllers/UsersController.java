@@ -18,9 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping(value = {"/user"})
 public class UsersController {
 
-    private int visitorCount = 0;
+/*    private int visitorCount = 0;
 
     @RequestMapping({"/", "/home"})
     public String index(Model model) {
@@ -28,41 +29,35 @@ public class UsersController {
         return "home";
     }
 
-
-/*    @Autowired
-    public UsersController(UserService userService) {
-        this.userService = userService;
-    }
-
+*/
     @Autowired
     @Qualifier("userService")
     UserService userService;
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/allUsers", method = RequestMethod.GET)
     public ModelAndView getAllUsers() {
         ModelAndView model = new ModelAndView();
         List<User> users = userService.getAll();
         model.addObject("users", users);
-        model.setViewName("getAllUsers");
+        model.setViewName("user/allUsers");
         return model;
     }
 
-    /*
-     @RequestMapping(value = "/about/{userId}", method = RequestMethod.GET)
+     @RequestMapping(value = "/info/{userId}", method = RequestMethod.GET)
      public ModelAndView getUserById(@PathVariable String userId) {
      ModelAndView model = new ModelAndView();
      User user = userService.getById(userId);
      model.addObject("user", user);
-     model.setViewName("info");
+     model.setViewName("user/info");
      return model;
      }
 
-     @RequestMapping(value = "/save", method = RequestMethod.GET)
+     @RequestMapping(value = "/addUser", method = RequestMethod.GET)
      public ModelAndView saveUser() {
      return new ModelAndView("user/addUser");
      }
 
-     @RequestMapping(value = "/save", method = RequestMethod.POST)
+     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
      public ModelAndView addUser(@RequestParam Map<String, String> parametrs) throws ParseException {
      userService.register(
      new User(String.valueOf(new Random().nextInt()), parametrs.get("name"),
