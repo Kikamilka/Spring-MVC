@@ -8,7 +8,6 @@ import com.epam.spring.core.domain.Ticket;
 import com.epam.spring.core.domain.User;
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Level;
 import org.postgresql.core.Logger;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -49,14 +48,8 @@ public class DbUserDaoImplement implements UserDao {
                     new UserMapper());
         } catch (DataAccessException ex) {
             logger.info(ex.getMessage(), ex.fillInStackTrace());
-            //System.out.println("User with id: " + id + "does'n exist");
-            try {                
-                throw new DaoDbExeption(ex.getMessage());
-            } catch (DaoDbExeption ex1) {
-                java.util.logging.Logger.getLogger(DbAuditoriumDaoImplement.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            throw new DaoDbExeption(ex);
         }
-        return null;
     }
 
     @Override
@@ -68,14 +61,8 @@ public class DbUserDaoImplement implements UserDao {
                     new UserMapper());
         } catch (DataAccessException ex) {
             logger.info(ex.getMessage(), ex.fillInStackTrace());
-            //System.out.println("User with name: " + name + "does'n exist");
-            try {                
-                throw new DaoDbExeption(ex.getMessage());
-            } catch (DaoDbExeption ex1) {
-                java.util.logging.Logger.getLogger(DbAuditoriumDaoImplement.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            throw new DaoDbExeption(ex);
         }
-        return null;
     }
 
     @Override
@@ -87,14 +74,8 @@ public class DbUserDaoImplement implements UserDao {
                     new UserMapper());
         } catch (DataAccessException ex) {
             logger.info(ex.getMessage(), ex.fillInStackTrace());
-            //System.out.println("User with email: " + email + "does'n exist");
-            try {                
-                throw new DaoDbExeption(ex.getMessage());
-            } catch (DaoDbExeption ex1) {
-                java.util.logging.Logger.getLogger(DbAuditoriumDaoImplement.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            throw new DaoDbExeption(ex);
         }
-        return null;
     }
 
     @Override
@@ -106,14 +87,8 @@ public class DbUserDaoImplement implements UserDao {
                     new TicketMapper());
         } catch (DataAccessException ex) {
             logger.info(ex.getMessage(), ex.fillInStackTrace());
-            //System.out.println("User with id: " + userId + "does'n exist");
-            try {                
-                throw new DaoDbExeption(ex.getMessage());
-            } catch (DaoDbExeption ex1) {
-                java.util.logging.Logger.getLogger(DbAuditoriumDaoImplement.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            throw new DaoDbExeption(ex);
         }
-        return null;
     }
 
     @Override
@@ -123,14 +98,8 @@ public class DbUserDaoImplement implements UserDao {
                     new UserMapper());
         } catch (DataAccessException ex) {
             logger.info(ex.getMessage(), ex.fillInStackTrace());
-            //System.out.println("Users list does'n exist");
-            try {                
-                throw new DaoDbExeption(ex.getMessage());
-            } catch (DaoDbExeption ex1) {
-                java.util.logging.Logger.getLogger(DbAuditoriumDaoImplement.class.getName()).log(Level.SEVERE, null, ex1);
-            }
+            throw new DaoDbExeption(ex);
         }
-        return null;
     }
 
 }
