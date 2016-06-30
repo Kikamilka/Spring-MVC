@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,22 +22,17 @@
                             <th>Действия</th>
                         </tr>
                     </thead>
-                    <tr>
-                        <td><a href="./info/${users[0].id}" role="button">${users[0].id}</a></td>
-                        <td>${users[0].name}</td>
-                        <td>${users[0].birthday}</td>
-                        <td>${users[0].email}</td>                            
-                        <td><a class="btn btn-default" role="button" href="../delete/${users[0].id}">Удалить</a></td>
-                    </tr>
-                    <tr>
-                        <td><a href="./info/${users[1].id}" role="button">${users[1].id}</a></td>
-                        <td>${users[1].name}</td>
-                        <td>${users[1].birthday}</td>
-                        <td>${users[1].email}</td>                            
-                        <td><a class="btn btn-default" role="button" href="../delete/${users[1].id}">Удалить</a></td>
-                    </tr>
+                    <c:forEach var="user" items="${users}">
+                        <tr>
+                            <td><a href="./info/${user.id}" role="button">${user.id}</a></td>
+                            <td>${user.name}</td>
+                            <td>${user.birthday}</td>
+                            <td>${user.email}</td>                            
+                            <td><a role="button" href="/ServiceEvent/user/delete/${user.id}">Удалить</a></td>
+                        </tr>
+                    </c:forEach>
                 </table>
-                <a class="btn btn-default" href="../addUser" role="button">Добавить пользователя</a>
+                <a href="../addUser" role="button">Добавить пользователя</a>
             </div>
         </div>
     </body>

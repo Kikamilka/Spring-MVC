@@ -11,7 +11,7 @@
                 <h3>Добавление пользователя</h3>
             </div>
             <div>
-                <form method="POST" action="./user/addUser">
+                <form method="POST" action="/ServiceEvent/user/addUser">
                     <div>
                         <label for="name">Имя</label>
                         <input type="text" id="name" placeholder="Имя" name="name"/>

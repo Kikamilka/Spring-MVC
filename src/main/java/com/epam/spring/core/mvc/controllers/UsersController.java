@@ -23,7 +23,7 @@ public class UsersController {
     @Qualifier("userService")
     UserService userService;
 
-    @RequestMapping(value = "/allUsers/", method = RequestMethod.GET)
+    @RequestMapping(value = "/allUsers", method = RequestMethod.GET)
     public ModelAndView getAllUsers() {
         ModelAndView model = new ModelAndView();
         List<User> users = userService.getAll();
@@ -41,12 +41,12 @@ public class UsersController {
      return model;
      }
 
-     @RequestMapping(value = "/addUser/", method = RequestMethod.GET)
+     @RequestMapping(value = "/addUser", method = RequestMethod.GET)
      public ModelAndView saveUser() {
      return new ModelAndView("user/addUser");
      }
 
-     @RequestMapping(value = "/addUser/", method = RequestMethod.POST)
+     @RequestMapping(value = "/addUser", method = RequestMethod.POST)
      public ModelAndView addUser(@RequestParam Map<String, String> parametrs) throws ParseException {
      userService.register(
      new User(String.valueOf(new Random().nextInt()), parametrs.get("name"),

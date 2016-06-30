@@ -1,15 +1,19 @@
 package com.epam.spring.core.dao.impls;
 
+import com.epam.spring.core.dao.impls.exeptions.DaoDbExeption;
 import com.epam.spring.core.dao.impls.mappers.EventMapper;
 import com.epam.spring.core.dao.interfaces.EventDao;
 import com.epam.spring.core.domain.Event;
 import java.util.List;
+import java.util.logging.Level;
+import org.postgresql.core.Logger;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
 
 public class DbEventDaoImplement implements EventDao {
 
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
+    private static final Logger logger = new Logger();
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -36,26 +40,58 @@ public class DbEventDaoImplement implements EventDao {
 
     @Override
     public Event getByName(String name) {
-        return jdbcTemplate.queryForObject("SELECT * FROM bookingservice.event "
-                + "WHERE name = ?",
-                new Object[] {name}, 
-                new EventMapper());
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM bookingservice.event "
+                    + "WHERE name = ?",
+                    new Object[]{name},
+                    new EventMapper());
+        } catch (DataAccessException ex) {
+            logger.info(ex.getMessage(), ex.fillInStackTrace());
+            //System.out.println("Event with name: " + name + "does'n exist");
+            try {                
+                throw new DaoDbExeption(ex.getMessage());
+            } catch (DaoDbExeption ex1) {
+                java.util.logging.Logger.getLogger(DbAuditoriumDaoImplement.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+        return null;
     }
 
     @Override
     public List<Event> getAll() {
-        return jdbcTemplate.query("SELECT * FROM bookingservice.event ",
-                new EventMapper());
+        try {
+            return jdbcTemplate.query("SELECT * FROM bookingservice.event ",
+                    new EventMapper());
+        } catch (DataAccessException ex) {
+            logger.info(ex.getMessage(), ex.fillInStackTrace());
+            //System.out.println("Events list does'n exist");
+            try {                
+                throw new DaoDbExeption(ex.getMessage());
+            } catch (DaoDbExeption ex1) {
+                java.util.logging.Logger.getLogger(DbAuditoriumDaoImplement.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+        return null;
     }
 
     @Override
     public void assignAuditorium(String eventId, String auditorium, String date, String time) {
-        Event event = jdbcTemplate.queryForObject("SELECT * FROM bookingservice.event "
-                + "WHERE id = ?",
-                new Object[] {eventId},
-                new EventMapper());
-        event.setAuditorium(auditorium);
-        event.setAirDate(date);
-        event.setAirTime(time);
+        try {
+            Event event = jdbcTemplate.queryForObject("SELECT * FROM bookingservice.event "
+                    + "WHERE id = ?",
+                    new Object[]{eventId},
+                    new EventMapper());
+            event.setAuditorium(auditorium);
+            event.setAirDate(date);
+            event.setAirTime(time);
+        } catch (DataAccessException ex) {
+            logger.info(ex.getMessage(), ex.fillInStackTrace());
+            //System.out.println("Event with id: " + eventId + "does'n exist");
+            try {                
+                throw new DaoDbExeption(ex.getMessage());
+            } catch (DaoDbExeption ex1) {
+                java.util.logging.Logger.getLogger(DbAuditoriumDaoImplement.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
     }
 }

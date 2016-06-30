@@ -1,15 +1,19 @@
 package com.epam.spring.core.dao.impls;
 
+import com.epam.spring.core.dao.impls.exeptions.DaoDbExeption;
 import com.epam.spring.core.dao.impls.mappers.AuditoriumMapper;
 import com.epam.spring.core.dao.interfaces.AuditoriumDao;
 import com.epam.spring.core.domain.Auditorium;
 import java.util.List;
+import java.util.logging.Level;
+import org.postgresql.core.Logger;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
 
 public class DbAuditoriumDaoImplement implements AuditoriumDao {
 
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
+    private static final Logger logger = new Logger();
 
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -22,31 +26,74 @@ public class DbAuditoriumDaoImplement implements AuditoriumDao {
                 auditorium.getName(),
                 auditorium.getSeatsNumber(),
                 auditorium.getVipSeats());
-        auditorium.setId(jdbcTemplate.queryForObject("SELECT * FROM bookingservice.auditorium "
-                + "WHERE name = ?",
-                new Object[]{auditorium.getName()},
-                new AuditoriumMapper()).getId());
+        try {
+            auditorium.setId(jdbcTemplate.queryForObject("SELECT * FROM bookingservice.auditorium "
+                    + "WHERE name = ?",
+                    new Object[]{auditorium.getName()},
+                    new AuditoriumMapper()).getId());
+        } catch (DataAccessException ex) {
+            logger.info(ex.getMessage(), ex.fillInStackTrace());
+            // System.out.println("Auditorium with name: " + auditorium.getName() + "does'n exist");
+            try {                
+                throw new DaoDbExeption(ex.getMessage());
+            } catch (DaoDbExeption ex1) {
+                java.util.logging.Logger.getLogger(DbAuditoriumDaoImplement.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
     }
 
     @Override
     public List<Auditorium> getAuditoriums() {
-        return jdbcTemplate.query("SELECT * FROM bookingservice.auditorium ",
-                new AuditoriumMapper());
+        try {
+            return jdbcTemplate.query("SELECT * FROM bookingservice.auditorium ",
+                    new AuditoriumMapper());
+        } catch (DataAccessException ex) {
+            logger.info(ex.getMessage(), ex.fillInStackTrace());
+            //System.out.println("Auditoriums list does'n exist");
+            try {                
+                throw new DaoDbExeption(ex.getMessage());
+            } catch (DaoDbExeption ex1) {
+                java.util.logging.Logger.getLogger(DbAuditoriumDaoImplement.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+        return null;
     }
 
     @Override
     public int getSeatsNumber(String auditoriumId) {
-        return jdbcTemplate.queryForObject("SELECT * FROM bookingservice.auditorium "
-                + "WHERE id = ?",
-                new Object[]{auditoriumId},
-                new AuditoriumMapper()).getSeatsNumber();
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM bookingservice.auditorium "
+                    + "WHERE id = ?",
+                    new Object[]{auditoriumId},
+                    new AuditoriumMapper()).getSeatsNumber();
+        } catch (DataAccessException ex) {
+            logger.info(ex.getMessage(), ex.fillInStackTrace());
+            //System.out.println("Auditorium with id: " + auditoriumId + "does'n exist");
+            try {
+                throw new DaoDbExeption(ex.getMessage());
+            } catch (DaoDbExeption ex1) {
+                java.util.logging.Logger.getLogger(DbAuditoriumDaoImplement.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+        return -1;
     }
 
     @Override
     public String getVipSeats(String auditoriumId) {
-        return jdbcTemplate.queryForObject("SELECT * FROM bookingservice.auditorium " +
-                        "WHERE idAuditorium = ?",
-                new Object[] {auditoriumId},
-                new AuditoriumMapper()).getVipSeats();
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM bookingservice.auditorium "
+                    + "WHERE idAuditorium = ?",
+                    new Object[]{auditoriumId},
+                    new AuditoriumMapper()).getVipSeats();
+        } catch (DataAccessException ex) {
+            logger.info(ex.getMessage(), ex.fillInStackTrace());
+            //System.out.println("Auditorium with id: " + auditoriumId + "does'n exist");
+            try {
+                throw new DaoDbExeption(ex.getMessage());
+            } catch (DaoDbExeption ex1) {
+                java.util.logging.Logger.getLogger(DbAuditoriumDaoImplement.class.getName()).log(Level.SEVERE, null, ex1);
+            }
+        }
+        return null;
     }
 }

@@ -74,11 +74,11 @@ public class UserDaoImplement implements UserDao {
 
     @Override
     public List<User> getAll() {    
-        List<User> listUsers = new ArrayList<>();
+        /*List<User> listUsers = new ArrayList<>();
         users.values().stream().forEach((curUser) -> {
             listUsers.add(curUser);
-        });
-        return listUsers;    
+        });*/
+        return (List<User>) users.values();    
     }
 
 }
