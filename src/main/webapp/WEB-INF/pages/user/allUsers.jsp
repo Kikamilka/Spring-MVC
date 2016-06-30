@@ -22,14 +22,14 @@
                         </tr>
                     </thead>
                     <tr>
-                        <td><a href="/info/${users[0].id}" role="button">${users[0].id}</a></td>
+                        <td><a href="./info/${users[0].id}" role="button">${users[0].id}</a></td>
                         <td>${users[0].name}</td>
                         <td>${users[0].birthday}</td>
                         <td>${users[0].email}</td>                            
                         <td><a class="btn btn-default" role="button" href="../delete/${users[0].id}">Удалить</a></td>
                     </tr>
                     <tr>
-                        <td><a href="/info/${users[1].id}" role="button">${users[1].id}</a></td>
+                        <td><a href="./info/${users[1].id}" role="button">${users[1].id}</a></td>
                         <td>${users[1].name}</td>
                         <td>${users[1].birthday}</td>
                         <td>${users[1].email}</td>                            
